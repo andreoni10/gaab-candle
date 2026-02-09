@@ -1,0 +1,510 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAAB CANDLE | Velas Artesanais</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="144x144">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" sizes="144x144">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --soft-blue: #A9C2D6;
+            --deep-navy: #0A1F2C;
+            --off-white: #F9F9F9;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--off-white);
+            color: var(--deep-navy);
+        }
+
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero Section com overlay gradiente sofisticado */
+        .hero-image {
+            background-image: url('images/hero_image.png');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Overlay gradiente em camadas para profundidade */
+        .hero-overlay {
+            background: linear-gradient(135deg,
+                    rgba(10, 31, 44, 0.75) 0%,
+                    rgba(10, 31, 44, 0.45) 40%,
+                    rgba(169, 194, 214, 0.35) 70%,
+                    rgba(249, 249, 249, 0.25) 100%);
+            mix-blend-mode: multiply;
+        }
+
+        /* Efeito de brilho sutil */
+        .hero-glow {
+            background: radial-gradient(ellipse at center,
+                    rgba(255, 255, 255, 0.15) 0%,
+                    transparent 70%);
+        }
+
+        /* Text shadow aprimorado para legibilidade */
+        .hero-title {
+            text-shadow:
+                0 2px 20px rgba(0, 0, 0, 0.3),
+                0 4px 40px rgba(10, 31, 44, 0.2),
+                0 0 80px rgba(255, 255, 255, 0.1);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(2px);
+        }
+
+        /* Botão com efeito glassmorphism */
+        .hero-button {
+            background: rgba(10, 31, 44, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 8px 32px rgba(10, 31, 44, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-button:hover {
+            background: rgba(10, 31, 44, 1);
+            transform: translateY(-2px);
+            box-shadow:
+                0 12px 48px rgba(10, 31, 44, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+
+        /* Animação da seta de scroll */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(-50%, 0);
+            }
+
+            50% {
+                transform: translate(-50%, 10px);
+            }
+        }
+
+        .scroll-indicator {
+            animation: float 2s ease-in-out infinite;
+        }
+
+        /* Linha decorativa animada */
+        .decorative-line {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, white, transparent);
+            margin: 0 auto;
+        }
+
+        /* Navegação aprimorada */
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Animações de scroll */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-animate.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-animate-fade {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+        }
+
+        .scroll-animate-fade.animate-in {
+            opacity: 1;
+        }
+
+        .scroll-animate-zoom {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-animate-zoom.animate-in {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Delays escalonados */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+
+        .delay-600 {
+            transition-delay: 0.6s;
+        }
+
+        .delay-800 {
+            transition-delay: 0.8s;
+        }
+
+        .delay-1000 {
+            transition-delay: 1s;
+        }
+    </style>
+
+</head>
+
+<body class="antialiased">
+    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center nav-glass">
+        <div class="flex items-center gap-3">
+            <h1 class="text-xl tracking-[0.4em] font-serif font-bold uppercase text-[#0A1F2C]">GAAB CANDLE</h1>
+            <img src="images/gaab_candle_logo.png" alt="Logo GAAB CANDLE" class="h-8 w-auto shrink-0">
+        </div>
+        <div class="hidden md:flex space-x-12 text-[10px] tracking-[0.2em] uppercase font-semibold">
+            <a href="#fragrancias" class="hover:text-sky-500 transition-colors">Fragrâncias</a>
+            <a href="#tamanhos" class="hover:text-sky-500 transition-colors">Preços</a>
+            <a href="#quem-somos" class="hover:text-sky-500 transition-colors">Quem Somos</a>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center justify-center hero-image">
+        <!-- Overlay gradiente em camadas -->
+        <div class="absolute inset-0 hero-overlay"></div>
+        <div class="absolute inset-0 hero-glow"></div>
+
+        <!-- Conteúdo centralizado -->
+        <div class="relative z-10 text-center space-y-10 px-6 max-w-5xl mx-auto scroll-animate">
+            <!-- Linha decorativa superior -->
+            <div class="decorative-line mb-8 scroll-animate-fade delay-200"></div>
+
+            <!-- Subtítulo -->
+            <p
+                class="text-xs md:text-sm tracking-[0.3em] uppercase font-semibold text-white/90 hero-subtitle scroll-animate delay-400">
+                Velas Artesanais
+            </p>
+
+            <!-- Título principal -->
+            <h2
+                class="text-5xl md:text-7xl lg:text-8xl font-serif italic font-light leading-tight text-white hero-title scroll-animate delay-600">
+                Perfume suas<br>
+                <span class="font-normal">melhores memórias</span>
+            </h2>
+
+            <!-- Linha decorativa do meio -->
+            <div class="decorative-line my-8 scroll-animate-fade delay-800"></div>
+
+            <!-- Descrição -->
+            <p
+                class="text-base md:text-lg font-light text-white/85 max-w-2xl mx-auto leading-relaxed hero-subtitle scroll-animate delay-1000">
+                Transforme seu ambiente com fragrâncias exclusivas<br class="hidden md:block">
+                criadas artesanalmente para momentos únicos
+            </p>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 scroll-indicator z-20">
+            <div class="flex flex-col items-center space-y-2">
+                <span class="text-[8px] tracking-[0.3em] uppercase text-white/60 font-semibold">Role</span>
+                <div class="w-px h-16 bg-gradient-to-b from-white/60 to-transparent"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white border-b border-stone-100">
+        <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-12">
+            <div class="text-center scroll-animate">
+                <p class="text-[10px] tracking-[0.3em] font-bold uppercase mb-2">Qualidade</p>
+                <p class="font-serif italic text-lg">100% Artesanal</p>
+            </div>
+            <div class="text-center scroll-animate delay-100">
+                <p class="text-[10px] tracking-[0.3em] font-bold uppercase mb-2">Natureza</p>
+                <p class="font-serif italic text-lg">Ceras Vegetais</p>
+            </div>
+            <div class="text-center scroll-animate delay-200">
+                <p class="text-[10px] tracking-[0.3em] font-bold uppercase mb-2">Ética</p>
+                <p class="font-serif italic text-lg">Sustentável</p>
+            </div>
+            <div class="text-center scroll-animate delay-300">
+                <p class="text-[10px] tracking-[0.3em] font-bold uppercase mb-2">Design</p>
+                <p class="font-serif italic text-lg">Fragrâncias Exclusivas</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="quem-somos" class="py-32 px-6 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16 scroll-animate">
+                <div class="decorative-line mb-8"
+                    style="background: linear-gradient(90deg, transparent, #0A1F2C, transparent);">
+                </div>
+                <h3 class="font-serif text-4xl md:text-5xl italic text-[#0A1F2C] mb-4">Quem Somos</h3>
+                <div class="decorative-line mt-8"
+                    style="background: linear-gradient(90deg, transparent, #0A1F2C, transparent);">
+                </div>
+            </div>
+
+            <div class="space-y-8 text-center scroll-animate delay-200">
+                <p class="text-lg md:text-xl font-light leading-relaxed text-[#0A1F2C]/80">
+                    O que começou como uma paixão por aromas e luz suave tornou-se nossa missão: levar o autocuidado
+                    para o seu dia a dia.
+                </p>
+
+                <p class="text-lg md:text-xl font-light leading-relaxed text-[#0A1F2C]/80">
+                    Cada uma de nossas velas é produzida artesanalmente, uma a uma, com um processo lento e
+                    cuidadoso que respeita o meio ambiente e a sua saúde. Combinamos fragrâncias exclusivas e ceras
+                    vegetais para criar uma atmosfera de acolhimento e sofisticação.
+                </p>
+
+                <p class="text-xl md:text-2xl font-serif italic text-[#0A1F2C] mt-12">
+                    Mais do que iluminar, queremos perfumar suas melhores memórias.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-40 px-6 bg-[#F9F9F9] border-y border-stone-200">
+        <div class="max-w-5xl mx-auto text-center">
+            <!-- Conteúdo principal -->
+            <div class="space-y-8 scroll-animate">
+                <p class="text-[10px] tracking-[0.4em] uppercase font-bold text-[#0A1F2C]/60">
+                    Pronto para começar?
+                </p>
+
+                <h3 class="font-serif text-4xl md:text-5xl lg:text-6xl italic text-[#0A1F2C] leading-tight">
+                    Escolha a fragrância<br>
+                    <span class="font-light">que te representa</span>
+                </h3>
+
+                <p class="text-base md:text-lg font-light text-[#0A1F2C]/70 max-w-2xl mx-auto leading-relaxed">
+                    Entre em contato e descubra como nossas velas podem transformar seu espaço
+                </p>
+            </div>
+
+            <!-- Botão CTA -->
+            <div
+                class="pt-16 flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center scroll-animate delay-400">
+                <a href="https://wa.me/5581981815254?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido." target="_blank"
+                    class="inline-block px-16 py-6 bg-[#0A1F2C] text-white text-[10px] tracking-[0.3em] uppercase font-semibold transition-all duration-500 hover:bg-[#A9C2D6] hover:shadow-2xl hover:scale-105">
+                    Fazer Pedido
+                </a>
+                <a href="#fragrancias"
+                    class="inline-block px-16 py-6 bg-[#0A1F2C] text-white text-[10px] tracking-[0.3em] uppercase font-semibold transition-all duration-500 hover:bg-[#A9C2D6] hover:shadow-2xl hover:scale-105">
+                    Ver Fragrâncias
+                </a>
+            </div>
+
+            <!-- Informação adicional -->
+            <p class="text-[9px] text-[#0A1F2C]/40 tracking-[0.4em] uppercase mt-16 scroll-animate-fade delay-800">
+                Atendimento personalizado • Entrega em todo o Brasil
+            </p>
+        </div>
+    </section>
+
+    <section id="fragrancias" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+            <div class="group scroll-animate">
+                <div
+                    class="aspect-[4/5] bg-[#aeb7b6] relative overflow-hidden flex items-center justify-center p-12 transition-all duration-700 group-hover:bg-[#aeb7b6]/50">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <img src="images/bamboo_breeze.png" alt="Bamboo Breeze Label"
+                            class="max-w-full max-h-full object-contain">
+                    </div>
+                </div>
+                <h3 class="mt-8 font-serif text-2xl italic">Bamboo Breeze</h3>
+                <p class="text-xs text-stone-500 uppercase tracking-widest mt-2">Serenidade e frescor</p>
+            </div>
+
+            <div class="group scroll-animate delay-200">
+                <div
+                    class="aspect-[4/5] bg-[#bcb17e] relative overflow-hidden flex items-center justify-center p-12 transition-all duration-700 group-hover:bg-[#bcb17e]/50">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <img src="images/maca_canela.png" alt="Maçã & Canela Label"
+                            class="max-w-full max-h-full object-contain">
+                    </div>
+                </div>
+                <h3 class="mt-8 font-serif text-2xl italic">Maçã & Canela</h3>
+                <p class="text-xs text-stone-500 uppercase tracking-widest mt-2">Acolhimento e conforto</p>
+            </div>
+
+            <div class="group scroll-animate delay-400">
+                <div
+                    class="aspect-[4/5] bg-[#72735f] relative overflow-hidden flex items-center justify-center p-12 transition-all duration-700 group-hover:bg-[#72735f]/50">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <img src="images/figo_blossom.png" alt="Figo Blossom Label"
+                            class="max-w-full max-h-full object-contain">
+                    </div>
+                </div>
+                <h3 class="mt-8 font-serif text-2xl italic">Figo Blossom</h3>
+                <p class="text-xs text-stone-500 uppercase tracking-widest mt-2">Sofisticação contemporânea</p>
+            </div>
+
+            <div class="group scroll-animate">
+                <div
+                    class="aspect-[4/5] bg-[#b596d5] relative overflow-hidden flex items-center justify-center p-12 transition-all duration-700 group-hover:bg-[#b596d5]/50">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <img src="images/brisa_de_lavanda.png" alt="Brisa de Lavanda Label"
+                            class="max-w-full max-h-full object-contain">
+                    </div>
+                </div>
+                <h3 class="mt-8 font-serif text-2xl italic">Brisa de Lavanda</h3>
+                <p class="text-xs text-stone-500 uppercase tracking-widest mt-2">Relaxante</p>
+            </div>
+
+            <div class="group scroll-animate delay-200">
+                <div
+                    class="aspect-[4/5] bg-[#c2a990] relative overflow-hidden flex items-center justify-center p-12 transition-all duration-700 group-hover:bg-[#c2a990]/50">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <img src="images/sweet_vanilla.png" alt="Sweet Vanilla Label"
+                            class="max-w-full max-h-full object-contain">
+                    </div>
+                </div>
+                <h3 class="mt-8 font-serif text-2xl italic">Sweet Vanilla</h3>
+                <p class="text-xs text-stone-500 uppercase tracking-widest mt-2">Doce & Afetuoso</p>
+            </div>
+
+            <div class="group scroll-animate delay-400">
+                <div
+                    class="aspect-[4/5] bg-[#f7f0b8] relative overflow-hidden flex items-center justify-center p-12 transition-all duration-700 group-hover:bg-[#f7f0b8]/50">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <img src="images/sicilian_lemon.png" alt="Sicilian Lemon Label"
+                            class="max-w-full max-h-full object-contain">
+                    </div>
+                </div>
+                <h3 class="mt-8 font-serif text-2xl italic">Sicilian Lemon</h3>
+                <p class="text-xs text-stone-500 uppercase tracking-widest mt-2">Energizante</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="tamanhos" class="py-20 bg-[#0A1F2C] text-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="font-serif text-3xl md:text-4xl italic mb-3 text-center scroll-animate">Nossas
+                Opções
+            </h3>
+            <p class="text-center text-white/70 text-xs tracking-[0.2em] uppercase mb-12 scroll-animate delay-100">
+                Escolha o tamanho ideal
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Tamanho 150ml -->
+                <div class="group scroll-animate-zoom">
+                    <div
+                        class="aspect-[3/4] bg-white/5 relative overflow-hidden flex items-center justify-center p-8 mb-5 transition-all duration-700 hover:bg-white/10">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <img src="images/vela_150g.png" alt="Vela 150ml"
+                                class="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-3xl font-serif mb-2 italic">150g</p>
+                        <p class="text-2xl font-light text-[#A9C2D6] mb-3">R$ 39,90</p>
+                        <div class="h-px w-12 bg-[#A9C2D6]/30 mx-auto"></div>
+                    </div>
+                </div>
+
+                <!-- Tamanho 210ml -->
+                <div class="group scroll-animate-zoom delay-200">
+                    <div
+                        class="aspect-[3/4] bg-white/5 relative overflow-hidden flex items-center justify-center p-8 mb-5 transition-all duration-700 hover:bg-white/10">
+                        <div class="w-full h-full flex items-center justify-center">
+                            <img src="images/vela_210g.png" alt="Vela 210ml"
+                                class="max-w-full max-h-full object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-3xl font-serif mb-2 italic">210g</p>
+                        <p class="text-2xl font-light text-[#A9C2D6] mb-3">R$ 60,00</p>
+                        <p></p>
+                        <div class="h-px w-12 bg-[#A9C2D6]/30 mx-auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6 text-center space-y-10">
+            <h2 class="text-xl tracking-[0.4em] font-serif uppercase">GAAB CANDLE</h2>
+            <p class="text-stone-600 italic font-serif">"O autocuidado para o seu dia a dia"</p>
+            <div class="flex justify-center space-x-10 text-[10px] tracking-widest font-bold uppercase opacity-60">
+                <a href="https://www.instagram.com/gaabcandle/" target="_blank"
+                    class="hover:text-sky-500 transition-colors">Instagram</a>
+                <a href="https://wa.me/5581981815254?text=Olá!%20Gostaria%20de%20mais%20informações." target="_blank"
+                    class="hover:text-sky-500 transition-colors">WhatsApp</a>
+            </div>
+            <p class="text-[8px] text-stone-600 tracking-[0.5em] uppercase pt-10">Site desenvolvido por Lucas Andreoni
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer para animações no scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observar todos os elementos com classes de animação scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.scroll-animate, .scroll-animate-fade, .scroll-animate-zoom').forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+
+</html>
