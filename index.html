@@ -46,10 +46,16 @@
         /* Hero Section com overlay gradiente sofisticado */
         .hero-image {
             background-image: url('images/hero_image.png');
-            background-attachment: fixed;
+            background-attachment: scroll;
             background-position: center;
             background-size: cover;
             position: relative;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-image {
+                background-attachment: fixed;
+            }
         }
 
         /* Overlay gradiente em camadas para profundidade */
